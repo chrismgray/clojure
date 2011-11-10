@@ -315,3 +315,11 @@
 ;; (read stream eof-is-error eof-value is-recursive)
 
 (deftest t-read)
+
+(deftest division
+  (is (= clojure.core// /))
+  (binding [*ns* *ns*]
+    (eval '(do (ns foo
+                 (:require [clojure.core :as bar])
+                 (:use [clojure.test]))
+               (is (= clojure.core// bar//))))))
