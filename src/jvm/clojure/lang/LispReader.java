@@ -58,7 +58,7 @@ static Symbol DEREF = Symbol.intern("clojure.core", "deref");
 static IFn[] macros = new IFn[256];
 static IFn[] dispatchMacros = new IFn[256];
 //static Pattern symbolPat = Pattern.compile("[:]?([\\D&&[^:/]][^:/]*/)?[\\D&&[^:/]][^:/]*");
-static Pattern symbolPat = Pattern.compile("[:]?([\\D&&[^/]].*/)?([\\D&&[^/]][^/]*)");
+static Pattern symbolPat = Pattern.compile("[:]?([\\D&&[^/]].*/)?(/|[\\D&&[^/]][^/]*)");
 //static Pattern varPat = Pattern.compile("([\\D&&[^:\\.]][^:\\.]*):([\\D&&[^:\\.]][^:\\.]*)");
 //static Pattern intPat = Pattern.compile("[-+]?[0-9]+\\.?");
 static Pattern intPat =
@@ -303,14 +303,6 @@ static private Object interpretToken(String s) {
 	else if(s.equals("false"))
 		{
 		return RT.F;
-		}
-	else if(s.equals("/"))
-		{
-		return SLASH;
-		}
-	else if(s.equals("clojure.core//"))
-		{
-		return CLOJURE_SLASH;
 		}
 	Object ret = null;
 
